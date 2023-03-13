@@ -32,9 +32,19 @@ final class Barbershop: Model, Content {
     @Field(key: "working_hours")
     var workingHours: WorkingHours
     
+    @Field(key: "pricing")
+    var pricing: Pricing
+    
+    @Field(key: "coordinate")
+    var coordinate: Coordinate
+    
+    
+    @Field(key: "barbers")
+    var barbers: [Barber]
+    
     init() {}
     
-    init(id: UUID? = nil, name: String, imageUrl: String?, town: String, rating: Double, vip: Bool, workingHours: WorkingHours){
+    init(id: UUID? = nil, name: String, imageUrl: String?, town: String, rating: Double, vip: Bool, workingHours: WorkingHours, pricing: Pricing, coordinate: Coordinate, barbers: [Barber]){
         self.id = id
         self.name = name
         self.imageUrl = imageUrl
@@ -42,6 +52,9 @@ final class Barbershop: Model, Content {
         self.rating = rating
         self.vip = vip
         self.workingHours = workingHours
+        self.pricing = pricing
+        self.coordinate = coordinate
+        self.barbers = barbers
     }
 }
 
