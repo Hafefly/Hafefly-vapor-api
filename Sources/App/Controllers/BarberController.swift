@@ -8,19 +8,19 @@
 import Fluent
 import Vapor
 
-struct BarberController: RouteCollection {
+struct BarbershopController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
-        let barbers = routes.grouped("barbers")
-        barbers.get(use: index)
-        barbers.post(use: create)
+        let barbershops = routes.grouped("barbershops")
+        barbershops.get(use: index)
+        barbershops.post(use: create)
     }
     
-    func index(req: Request) throws -> EventLoopFuture<[Barber]> {
-        return Barber.query(on: req.db).all()
+    func index(req: Request) throws -> EventLoopFuture<[Barbershop]> {
+        return Barbershop.query(on: req.db).all()
     }
     
     func create(req: Request) throws -> EventLoopFuture<HTTPStatus> {
-        let barber = try req.content.decode(Barbershop.self)
-        return barber.save(on: req.db).transform(to: .ok)
+        let barbershop = try req.content.decode(Barbershop.self)
+        return barbershop.save(on: req.db).transform(to: .ok)
     }
 }

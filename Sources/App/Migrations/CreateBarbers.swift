@@ -9,17 +9,13 @@ import Fluent
 
 struct CreateBarber: Migration {
     func prepare(on database: FluentKit.Database) -> NIOCore.EventLoopFuture<Void> {
-        return database.schema("barbers")
+        return database.schema("barbershops")
             .id()
-            .field("barbershop_id", .uuid, .references("barbershops", "id"))
             .field("name", .string, .required)
-            .field("image_url", .string, .required)
+            .field("image", .string, .required)
             .field("town", .string, .required)
             .field("rating", .double, .required)
             .field("vip", .bool, .required)
-            .field("working_hours", .custom(WorkingHours.self), .required)
-            .field("pricing", .custom(Pricing.self), .required)
-            .field("coordinate", .custom(Coordinate.self), .required)
             .create()
     }
     

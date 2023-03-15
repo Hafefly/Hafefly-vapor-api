@@ -8,7 +8,23 @@
 import Fluent
 import Vapor
 
-struct Coordinate: Content {
-    let latitude: Double
-    let longitude: Double
+final class Coordinate: Model, Content {
+    static let schema = "coordinate"
+    
+    @ID(key: .id)
+    var id: UUID?
+    
+    @Field(key: "latitude")
+    var latitude: Double
+    
+    @Field(key: "longitude")
+    var longitude: Double
+    
+    init() {}
+    
+    init(id: UUID? = nil, latitude: Double, longitude: Double) {
+        self.id = id
+        self.latitude = latitude
+        self.longitude = longitude
+    }
 }
