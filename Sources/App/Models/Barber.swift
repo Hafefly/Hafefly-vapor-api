@@ -42,7 +42,7 @@ final class Barber: Model, Content {
     var haircutsDone: UInt
     
     @Field(key: "instagram")
-    var instagram: String
+    var instagram: String?
     
     @Field(key: "is_available_home")
     var isAvailableHome: Bool
