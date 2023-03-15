@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Review.swift
 //  
 //
 //  Created by Samy Mehdid on 15/3/2023.
@@ -21,18 +21,18 @@ final class Review: Model, Content {
     var user: User
     
     @Field(key: "message")
-    var message: String
+    var message: String?
     
     @Field(key: "rating")
     var rating: Double
     
     init() { }
     
-    init(id: UUID? = nil, barberID: UUID, userID: UUID, message: String, rating: Double) {
+    init(id: UUID? = nil, barberID: UUID, userID: UUID, rating: Double, message: String? = nil) {
         self.id = id
         self.$barber.id = barberID
         self.$user.id = userID
-        self.message = message
         self.rating = rating
+        self.message = message
     }
 }

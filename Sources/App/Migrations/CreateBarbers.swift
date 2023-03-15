@@ -23,7 +23,7 @@ struct CreateBarbers: Migration {
             .field("instagram", .string)
             .field("is_available_home", .bool, .required)
             .field("phone", .string, .required)
-            .field("working_hours", .custom(WorkingHours.self), .required)
+//            .field("working_hours", .custom(WorkingHours.self), .required)
             .create()
     }
     

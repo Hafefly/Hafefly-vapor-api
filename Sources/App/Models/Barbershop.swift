@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Barbershop.swift
 //  
 //
 //  Created by Samy Mehdid on 13/3/2023.
@@ -38,10 +38,6 @@ final class Barbershop: Model, Content {
     @Field(key: "coordinate")
     var coordinate: Coordinate
     
-    
-    @Field(key: "barbers")
-    var barbers: [Barber]
-    
     init() {}
     
     init(id: UUID? = nil, name: String, imageUrl: String?, town: String, rating: Double, vip: Bool, workingHours: WorkingHours, pricing: Pricing, coordinate: Coordinate, barbers: [Barber]){
@@ -54,7 +50,6 @@ final class Barbershop: Model, Content {
         self.workingHours = workingHours
         self.pricing = pricing
         self.coordinate = coordinate
-        self.barbers = barbers
     }
 }
 
