@@ -16,6 +16,7 @@ public func configure(_ app: Application) throws {
     ), as: .psql)
 
     app.migrations.add(CreateBarbershops())
+    app.migrations.add(CreateBarbers())
     try app.autoMigrate().wait()
     // register routes
     try routes(app)

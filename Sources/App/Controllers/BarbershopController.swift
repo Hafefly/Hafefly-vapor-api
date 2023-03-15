@@ -1,5 +1,5 @@
 //
-//  BarbershopController.swift
+//  BarberController.swift
 //  
 //
 //  Created by Samy Mehdid on 13/3/2023.
@@ -8,7 +8,7 @@
 import Fluent
 import Vapor
 
-struct BarberController: RouteCollection {
+struct BarbershopController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
         let barbershops = routes.grouped("barbershops")
         barbershops.get(use: index)

@@ -14,8 +14,8 @@ final class Barber: Model, Content {
     @ID(key: .id)
     var id: UUID?
     
-    @Field(key: "barbershop_id")
-    var barbershopID: UInt
+    @Parent(key: "barbershop_id")
+    var barbershop: Barbershop
     
     @Field(key: "profile_image_url")
     var profileImageUrl: String?
@@ -25,9 +25,6 @@ final class Barber: Model, Content {
     
     @Field(key: "rating")
     var rating: Double
-    
-    @Field(key: "barbershop_name")
-    var barbershopName: String
     
     @Field(key: "name")
     var name: String
@@ -53,57 +50,25 @@ final class Barber: Model, Content {
     @Field(key: "phone")
     var phone: String
     
-    @Field(key: "verified")
-    var verified: Bool
-    
     @Field(key: "working_hours")
     var workingHours: WorkingHours
     
-    @Field(key: "reviews")
-    var reviews: [Review]
-    
     init() {}
     
-    init(id: UUID? = nil, barbershopID: UInt, profileImageUrl: String? = nil, province: String, rating: Double, barbershopName: String, name: String, bio: String? = nil, age: UInt, haircutsDone: UInt, instagram: String, isAvailableHome: Bool, phone: String, verified: Bool, workingHours: WorkingHours, reviews: [Review]) {
+    init(id: UUID? = nil, barbershopID: UUID, profileImageUrl: String? = nil, province: String, rating: Double, name: String, bio: String? = nil, age: UInt, experience: UInt, haircutsDone: UInt, instagram: String? = nil, isAvailableHome: Bool, phone: String, workingHours: WorkingHours) {
         self.id = id
-        self.barbershopID = barbershopID
-        self.barbershopName = barbershopName
+        self.$barbershop.id = barbershopID
         self.profileImageUrl = profileImageUrl
         self.province = province
+        self.rating = rating
         self.name = name
         self.bio = bio
         self.age = age
+        self.experience = experience
         self.haircutsDone = haircutsDone
         self.instagram = instagram
         self.isAvailableHome = isAvailableHome
         self.phone = phone
-        self.verified = verified
         self.workingHours = workingHours
-        self.reviews = reviews
-    }
-}
-
-final class Review: Model, Content {
-    static let schema = "reviews"
-    
-    @ID(key: .id)
-    var id: UUID?
-    
-    @Field(key: "message")
-    var message: String
-    
-    @Field(key: "username")
-    var username: String
-    
-    @Field(key: "rating")
-    var rating: Double
-    
-    init() { }
-    
-    init(id: UUID? = nil, message: String, username: String, rating: Double) {
-        self.id = id
-        self.message = message
-        self.username = username
-        self.rating = rating
     }
 }
