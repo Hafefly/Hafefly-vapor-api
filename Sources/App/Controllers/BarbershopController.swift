@@ -8,7 +8,7 @@
 import Fluent
 import Vapor
 
-struct BarberController: RouteCollection {
+struct BarbershopController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
         let barbershops = routes.grouped("barbershops")
         barbershops.get(use: index)

@@ -14,6 +14,7 @@ final class Barber: Model, Content {
     @ID(key: .id)
     var id: UUID?
     
+    
     @Field(key: "barbershop_id")
     var barbershopID: UInt
     

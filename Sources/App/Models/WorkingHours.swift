@@ -8,22 +8,7 @@
 import Fluent
 import Vapor
 
-final class WorkingHours: Model, Content {
-    static let schema = "working_hours"
-    
-    @ID(key: .id)
-    var id: UUID?
-    
-    @Field(key: "opening")
-    var opening: Date
-    
-    @Field(key: "closing")
-    var closing: Date
-    
-    init() {}
-    
-    init(id: UUID? = nil, opening: Date, closing: Date) {
-        self.opening = opening
-        self.closing = closing
-    }
+struct WorkingHours: Content {
+    let opening: Date
+    let closing: Date
 }
