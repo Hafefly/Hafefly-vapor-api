@@ -20,7 +20,7 @@ struct ReviewController: RouteCollection {
     }
     
     func create(req: Request) throws -> EventLoopFuture<HTTPStatus> {
-        let barbershop = try req.content.decode(Barbershop.self)
-        return barbershop.save(on: req.db).transform(to: .ok)
+        let review = try req.content.decode(Review.self)
+        return review.save(on: req.db).transform(to: .ok)
     }
 }
