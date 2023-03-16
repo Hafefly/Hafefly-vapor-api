@@ -43,7 +43,7 @@ final class User: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, firstname: String, lastname: String, profileImageUrl: String, phone: String, email: String? = nil, province: String, haircutsDone: Int, vip: Bool) {
+    init(id: UUID? = nil, firstname: String, lastname: String, profileImageUrl: String? = nil, phone: String, email: String? = nil, province: String, haircutsDone: Int, vip: Bool) {
         self.id = id
         self.firstname = firstname
         self.lastname = lastname
