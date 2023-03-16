@@ -33,13 +33,13 @@ final class Barber: Model, Content {
     var bio: String?
     
     @Field(key: "age")
-    var age: UInt
+    var age: Int
     
     @Field(key: "experience")
-    var experience: UInt
+    var experience: Int
     
     @Field(key: "haircuts_done")
-    var haircutsDone: UInt
+    var haircutsDone: Int
     
     @Field(key: "instagram")
     var instagram: String?
@@ -50,12 +50,15 @@ final class Barber: Model, Content {
     @Field(key: "phone")
     var phone: String
     
-    @Field(key: "working_hours")
-    var workingHours: WorkingHours
+//    @Field(key: "working_hours")
+//    var workingHours: WorkingHours
+    
+    @Children(for: \.$barber)
+    var reviews: [Review]
     
     init() {}
     
-    init(id: UUID? = nil, barbershopID: UUID, profileImageUrl: String? = nil, province: String, rating: Double, name: String, bio: String? = nil, age: UInt, experience: UInt, haircutsDone: UInt, instagram: String? = nil, isAvailableHome: Bool, phone: String, workingHours: WorkingHours) {
+    init(id: UUID? = nil, barbershopID: UUID, profileImageUrl: String? = nil, province: String, rating: Double, name: String, bio: String? = nil, age: Int, experience: Int, haircutsDone: Int, instagram: String? = nil, isAvailableHome: Bool, phone: String, workingHours: WorkingHours) {
         self.id = id
         self.$barbershop.id = barbershopID
         self.profileImageUrl = profileImageUrl
@@ -69,6 +72,6 @@ final class Barber: Model, Content {
         self.instagram = instagram
         self.isAvailableHome = isAvailableHome
         self.phone = phone
-        self.workingHours = workingHours
+//        self.workingHours = workingHours
     }
 }

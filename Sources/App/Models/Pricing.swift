@@ -8,11 +8,11 @@
 import Vapor
 
 struct Pricing: Content {
-    var fade: UInt
-    var beard: UInt
-    var hairdryer: UInt
-    var razor: UInt
-    var scissors: UInt
-    var straightener: UInt
-    var atHome: UInt?
+    var fade: Int
+    var beard: Int
+    var hairdryer: Int
+    var razor: Int
+    var scissors: Int
+    var straightener: Int
+    var atHome: Int?
 }

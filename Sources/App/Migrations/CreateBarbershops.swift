@@ -12,7 +12,7 @@ struct CreateBarbershops: Migration {
         return database.schema("barbershops")
             .id()
             .field("name", .string, .required)
-            .field("image_url", .string, .required)
+            .field("image_url", .string)
             .field("town", .string, .required)
             .field("rating", .double, .required)
             .field("vip", .bool, .required)

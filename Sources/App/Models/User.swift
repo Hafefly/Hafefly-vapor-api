@@ -33,14 +33,17 @@ final class User: Model, Content {
     var province: String
     
     @Field(key: "haircuts_done")
-    var haircutsDone: UInt
+    var haircutsDone: Int
     
     @Field(key: "vip")
     var vip: Bool
     
+    @Children(for: \.$user)
+    var reviews: [Review]
+    
     init() {}
     
-    init(id: UUID? = nil, firstname: String, lastname: String, profileImageUrl: String, phone: String, email: String? = nil, province: String, haircutsDone: UInt, vip: Bool) {
+    init(id: UUID? = nil, firstname: String, lastname: String, profileImageUrl: String, phone: String, email: String? = nil, province: String, haircutsDone: Int, vip: Bool) {
         self.id = id
         self.firstname = firstname
         self.lastname = lastname

@@ -17,7 +17,7 @@ struct CreateUsers: Migration {
             .field("phone", .string, .required)
             .field("email", .string)
             .field("province", .string, .required)
-            .field("haircuts_done", .uint8, .required)
+            .field("haircuts_done", .int8, .required)
             .field("vip", .bool, .required)
             .create()
     }

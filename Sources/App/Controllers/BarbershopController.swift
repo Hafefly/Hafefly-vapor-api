@@ -16,7 +16,25 @@ struct BarbershopController: RouteCollection {
     }
     
     func index(req: Request) throws -> EventLoopFuture<[Barbershop]> {
-        return Barbershop.query(on: req.db).all()
+        if let id = req.parameters.get("id", as: UUID.self) {
+            return try findBarbershop(req: req, by: id).map { [$0] }
+        } else if let query = req.parameters.get("query", as: String.self) {
+            return try searchBarbershops(req: req, for: query)
+        } else {
+            return Barbershop.query(on: req.db).with(\.$barbers).all()
+        }
+    }
+    
+    func findBarbershop(req: Request, by id: UUID) throws -> EventLoopFuture<Barbershop> {
+        Barbershop.find(id, on: req.db).unwrap(or: Abort(.noContent))
+    }
+    
+    func searchBarbershops(req: Request, for query: String) throws -> EventLoopFuture<[Barbershop]> {
+        return Barbershop.query(on: req.db)
+            .filter(\.$name == query)
+            .sort(\.$rating)
+            .with(\.$barbers)
+            .all()
     }
     
     func create(req: Request) throws -> EventLoopFuture<HTTPStatus> {

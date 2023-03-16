@@ -29,27 +29,30 @@ final class Barbershop: Model, Content {
     @Field(key: "vip")
     var vip: Bool
     
-    @Field(key: "working_hours")
-    var workingHours: WorkingHours
+//    @Field(key: "working_hours")
+//    var workingHours: WorkingHours
+//
+//    @Field(key: "pricing")
+//    var pricing: Pricing
+//
+//    @Field(key: "coordinate")
+//    var coordinate: Coordinate
     
-    @Field(key: "pricing")
-    var pricing: Pricing
-    
-    @Field(key: "coordinate")
-    var coordinate: Coordinate
+    @Children(for: \.$barbershop)
+    var barbers: [Barber]
     
     init() {}
     
-    init(id: UUID? = nil, name: String, imageUrl: String?, town: String, rating: Double, vip: Bool, workingHours: WorkingHours, pricing: Pricing, coordinate: Coordinate, barbers: [Barber]){
+    init(id: UUID? = nil, name: String, imageUrl: String? = nil, town: String, rating: Double, vip: Bool, workingHours: WorkingHours, pricing: Pricing, coordinate: Coordinate, barbers: [Barber]){
         self.id = id
         self.name = name
         self.imageUrl = imageUrl
         self.town = town
         self.rating = rating
         self.vip = vip
-        self.workingHours = workingHours
-        self.pricing = pricing
-        self.coordinate = coordinate
+//        self.workingHours = workingHours
+//        self.pricing = pricing
+//        self.coordinate = coordinate
     }
 }
 

@@ -20,7 +20,7 @@ struct BarberController: RouteCollection {
     }
     
     func create(req: Request) throws -> EventLoopFuture<HTTPStatus> {
-        let barber = try req.content.decode(Barbershop.self)
+        let barber = try req.content.decode(Barber.self)
         return barber.save(on: req.db).transform(to: .ok)
     }
 }
