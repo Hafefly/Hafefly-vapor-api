@@ -19,6 +19,7 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateBarbers())
     app.migrations.add(CreateUsers())
     app.migrations.add(CreateReviews())
+    app.migrations.add(CreateTokens())
     try app.autoMigrate().wait()
     // register routes
     try routes(app)

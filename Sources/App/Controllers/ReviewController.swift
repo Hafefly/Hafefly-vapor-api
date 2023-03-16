@@ -10,9 +10,9 @@ import Vapor
 
 struct ReviewController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
-        let barbershops = routes.grouped("reviews")
-        barbershops.get(use: index)
-        barbershops.post(use: create)
+        let reviews = routes.grouped("reviews")
+        reviews.get(use: index)
+        reviews.post(use: create)
     }
     
     func index(req: Request) throws -> EventLoopFuture<[Review]> {

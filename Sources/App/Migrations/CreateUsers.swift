@@ -9,7 +9,7 @@ import FluentKit
 
 struct CreateUsers: Migration {
     func prepare(on database: FluentKit.Database) -> NIOCore.EventLoopFuture<Void> {
-        database.schema("users")
+        database.schema(User.schema)
             .id()
             .field("firstname", .string, .required)
             .field("lastname", .string, .required)
@@ -23,7 +23,7 @@ struct CreateUsers: Migration {
     }
     
     func revert(on database: FluentKit.Database) -> NIOCore.EventLoopFuture<Void> {
-        database.schema("users")
+        database.schema(User.schema)
             .delete()
     }
 }

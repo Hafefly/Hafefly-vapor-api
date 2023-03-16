@@ -9,9 +9,9 @@ import FluentKit
 
 struct CreateBarbers: Migration {
     func prepare(on database: FluentKit.Database) -> NIOCore.EventLoopFuture<Void> {
-        return database.schema("barbers")
+        return database.schema(Barber.schema)
             .id()
-            .field("barbershop_id", .uuid, .references("barbershops", "id"))
+            .field("barbershop_id", .uuid, .references(Barbershop.schema, "id"))
             .field("name", .string, .required)
             .field("profile_image_url", .string)
             .field("province", .string, .required)
@@ -28,7 +28,7 @@ struct CreateBarbers: Migration {
     }
     
     func revert(on database: FluentKit.Database) -> NIOCore.EventLoopFuture<Void> {
-        return database.schema("barbers")
+        return database.schema(Barber.schema)
             .delete()
     }
 }

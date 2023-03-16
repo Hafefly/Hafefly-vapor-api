@@ -9,17 +9,17 @@ import FluentKit
 
 struct CreateReviews: Migration {
     func prepare(on database: FluentKit.Database) -> NIOCore.EventLoopFuture<Void> {
-        database.schema("reviews")
+        database.schema(Review.schema)
             .id()
-            .field("barber_id", .uuid, .references("barbers", "id"))
-            .field("user_id", .uuid, .references("users", "id"))
+            .field("barber_id", .uuid, .references(Barber.schema, "id"))
+            .field("user_id", .uuid, .references(User.schema, "id"))
             .field("rating", .double, .required)
             .field("message", .string)
             .create()
     }
     
     func revert(on database: FluentKit.Database) -> NIOCore.EventLoopFuture<Void> {
-        database.schema("reviews")
+        database.schema(Review.schema)
             .delete()
     }
 }
