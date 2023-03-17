@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TokenController.swift
 //  
 //
 //  Created by Samy Mehdid on 16/3/2023.
@@ -10,8 +10,8 @@ import Vapor
 
 struct TokenController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
-        let users = routes.grouped("login")
-        users.post(use: create)
+        let login = routes.grouped("login")
+        login.post(use: create)
     }
     
     func create(req: Request) throws -> EventLoopFuture<Token> {

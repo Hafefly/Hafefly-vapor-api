@@ -14,6 +14,9 @@ final class User: Model, Content, Authenticatable {
     @ID(key: .id)
     var id: UUID?
     
+    @Field(key: "username")
+    var username: String
+    
     @Field(key: "firstname")
     var firstname: String
     
@@ -27,7 +30,7 @@ final class User: Model, Content, Authenticatable {
     var phone: String?
     
     @Field(key: "email")
-    var email: String
+    var email: String?
     
     @Field(key: "password_hash")
     var passwordHash: String
@@ -44,10 +47,14 @@ final class User: Model, Content, Authenticatable {
     @Children(for: \.$user)
     var reviews: [Review]
     
+    @Children(for: \.$user)
+    var tokens: [Token]
+    
     init() {}
     
-    init(id: UUID? = nil, firstname: String, lastname: String, profileImageUrl: String? = nil, phone: String? = nil, email: String, passwordHash: String, province: String, haircutsDone: Int, vip: Bool) {
+    init(id: UUID? = nil, username: String, firstname: String, lastname: String, profileImageUrl: String? = nil, phone: String? = nil, email: String? = nil, passwordHash: String, province: String, haircutsDone: Int, vip: Bool) {
         self.id = id
+        self.username = username
         self.firstname = firstname
         self.lastname = lastname
         self.profileImageUrl = profileImageUrl
@@ -61,7 +68,7 @@ final class User: Model, Content, Authenticatable {
 }
 
 extension User: ModelAuthenticatable {
-    static let usernameKey = \User.$email
+    static let usernameKey = \User.$username
     static let passwordHashKey = \User.$passwordHash
 
     func verify(password: String) throws -> Bool {
@@ -71,11 +78,10 @@ extension User: ModelAuthenticatable {
 
 extension User {
     struct Create: Content {
+        var username: String
         var firstname: String
         var lastname: String
-        var phone: String
         var province: String
-        var email: String
         var password: String
         var confirmPassword: String
     }
@@ -83,10 +89,9 @@ extension User {
 
 extension User.Create: Validatable {
     static func validations(_ validations: inout Validations) {
+        validations.add("username", as: String.self, is: !.empty)
         validations.add("firstname", as: String.self, is: !.empty)
-        validations.add("email", as: String.self, is: .email)
         validations.add("password", as: String.self, is: .count(8...))
-        validations.add("phone", as: String.self, is: .count(10...10))
     }
 }
 

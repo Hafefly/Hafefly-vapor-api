@@ -22,7 +22,7 @@ final class Token: Model, Content {
 
     init() { }
 
-    init(id: UUID? = nil, value: String, userID: User.IDValue) {
+    init(id: UUID? = nil, value: String, userID: UUID) {
         self.id = id
         self.value = value
         self.$user.id = userID
